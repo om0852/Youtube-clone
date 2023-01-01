@@ -1,0 +1,400 @@
+#include<iostream>
+    #include<conio.h>
+        #include<fstream>
+            #include<stdlib.h>
+                #include<cmath>
+                    #include<string>
+                        using namespace std;
+                        class employee_data{
+                        int id,salary;
+                        double p_number;
+                        char first_name[100];
+                        char middle_name[100];
+                        char last_name[100];
+                        char post[100];
+                        char department[100];
+                        public:
+                        void start();
+                        void Add_record();
+                        void Search_record();
+                        void Employee_list();
+                        void Update_record();
+                        void Delete_record();
+                        void Exit();
+                        };
+                        void employee_data::Exit(){}
+
+                        void employee_data::start(){
+                        int option;
+                        system("cls");
+                        cout<<"###############################################################################################
+                            \n"
+                        <<"\t
+                            ###################################Menu#############################################"<<endl
+                        <<"###############################################################################################
+                            \n \n \n \n"
+                        <<"1=> Add a new record"<<endl
+                            <<"2=> Search record from employee id"<<endl
+                                <<"3=> Display all employee data"<<endl
+                                    <<"4=> Update record of an employee"<<endl
+                                        <<"5=> Delete record"<<endl
+                                            <<"6=> Exit"<<endl;
+                                                    cin>>option;
+                                                    switch(option)
+                                                    {
+                                                    case 1:
+                                                    Add_record();
+                                                    break;
+                                                    case 2:
+                                                    Search_record();
+                                                    break;
+                                                    case 3:
+                                                    Employee_list();
+                                                    break;
+                                                    case 4:
+                                                    Update_record();
+                                                    break;
+                                                    case 5:
+                                                    Delete_record();
+                                                    break;
+                                                    case 6:
+                                                    Exit();
+                                                    }
+
+                                                    }
+                                                    int main(){
+                                                    system("cls");
+                                                    employee_data e;
+                                                    e.start();
+
+
+                                                    getch();
+                                                    return 0;
+                                                    }
+                                                    void
+                                                    employee_data::Add_record(){
+                                                    // employee_data e[20];
+                                                    int i=0,emp_id;
+                                                    char option;
+                                                    system("cls");
+                                                    cout<<"#############################################
+                                                        ADD DETAIL
+                                                        ######################################"<<endl;
+                                                        cout<<"\n \n \n \n";
+                                                        cout<<"ID \t\t:";cin>>emp_id;
+                                                        fstream file;
+                                                        file.open("system.txt",ios::in);
+                                                        file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                        while(!file.eof()){
+                                                        if(emp_id==id){
+                                                        cout<<"id alredy exits";
+                                                            getch();
+                                                            start();
+                                                            }
+                                                            file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                            }
+                                                            file.close();
+                                                            i=0;
+                                                            while(i==0){
+                                                            cout<<"FIRST NAME
+                                                                \t\t:";cin>>first_name;
+                                                                cout<<"MIDDLE
+                                                                    NAME
+                                                                    \t\t:";cin>>middle_name;
+                                                                    cout<<"LAST
+                                                                        NAME
+                                                                        \t\t:";cin>>last_name;
+                                                                        cout<<"PHONE
+                                                                            NUMBER\t\t:";cin>>p_number;
+                                                                            cout<<"POST
+                                                                                \t\t:";cin>>post;
+                                                                                cout<<"DEPARTMENT
+                                                                                    \t\t:";cin>>department;
+                                                                                    cout<<"SALARY
+                                                                                        \t\t:";cin>>salary;
+                                                                                        //
+                                                                                        fstream
+                                                                                        file;
+                                                                                        file.open("system.txt",ios::out|ios::app);
+                                                                                        file<<emp_id<<"
+                                                                                            "<<first_name<<"
+                                                                                            "<<middle_name<<"
+                                                                                            "<<last_name<<"
+                                                                                            "<<p_number<<"
+                                                                                            "<<post<<"
+                                                                                            "<<department<<"
+                                                                                            "<<salary<<"\n";
+                                                                                            file.close();
+                                                                                            cout<<"do
+                                                                                            you
+                                                                                            want
+                                                                                            to
+                                                                                            continue
+                                                                                            press
+                                                                                            y/n"<<endl;
+                                                                                            cin>>option;
+                                                                                            if(option=='y'||option=='Y')
+                                                                                            {
+                                                                                            Add_record();
+                                                                                            }
+                                                                                            else{
+                                                                                            getch();
+                                                                                            start();
+                                                                                            }
+                                                                                            }
+                                                                                            getch();
+                                                                                            }
+                                                                                            void
+                                                                                            employee_data::Employee_list(){
+                                                                                            fstream
+                                                                                            file;
+                                                                                            file.open("system.txt",ios::in);
+                                                                                            if(!file){
+                                                                                            system("cls");
+                                                                                            cout<<"\tfile
+                                                                                                is
+                                                                                                empty
+                                                                                                "<<endl;
+                                                                                                cout<<"\tpress
+                                                                                                any
+                                                                                                key
+                                                                                                to
+                                                                                                go
+                                                                                                on
+                                                                                                menu";
+                                                                                                getch();
+                                                                                                start();
+                                                                                                }
+                                                                                                cout<<"\t
+                                                                                                #################
+                                                                                                DETAIL
+                                                                                                #####################\t"<<endl
+                                                                                            <<"ID
+                                                                                                \t
+                                                                                                NAME
+                                                                                                \tSURNAME
+                                                                                                \tNUMBER
+                                                                                                \t\tPOST
+                                                                                                \t\tDEPARTMENT
+                                                                                                \t\tSALARY"<<endl;
+                                                                                                file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                while(!file.eof()){
+                                                                                                cout<<id<<"
+                                                                                                    \t
+                                                                                                    "
+                                                                                                <<first_name<<"\t\t"
+                                                                                                <<last_name<<"\t\t"
+                                                                                                <<p_number<<"
+                                                                                                    \t\t"
+                                                                                                <<post<<"
+                                                                                                    \t\t"
+                                                                                                <<department<<"\t\t\t
+                                                                                                    "
+                                                                                                <<salary<<"
+                                                                                                    \n";
+                                                                                                    file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                    }
+                                                                                                    file.close();
+                                                                                                    getch();
+                                                                                                    start();
+                                                                                                    }
+                                                                                                    void
+                                                                                                    employee_data::Search_record(){
+                                                                                                    int
+                                                                                                    emp_id;
+                                                                                                    fstream
+                                                                                                    file;
+                                                                                                    file.open("system.txt",ios::in);
+                                                                                                    if(!file){
+                                                                                                    system("cls");
+                                                                                                    cout<<"\tfile
+                                                                                                        is
+                                                                                                        empty
+                                                                                                        "<<endl;
+                                                                                                        cout<<"press
+                                                                                                        any
+                                                                                                        key
+                                                                                                        to
+                                                                                                        go
+                                                                                                        on
+                                                                                                        menu";
+                                                                                                        getch();
+                                                                                                        start();
+                                                                                                        }
+                                                                                                        cout<<"enter
+                                                                                                        your
+                                                                                                        id";
+                                                                                                        cin>>emp_id;
+                                                                                                        cout<<"\t
+                                                                                                            #################
+                                                                                                            DETAIL
+                                                                                                            #####################\t"<<endl
+                                                                                                        <<"ID
+                                                                                                            \t
+                                                                                                            NAME
+                                                                                                            \tSURNAME
+                                                                                                            \tNUMBER
+                                                                                                            \t\tPOST
+                                                                                                            \t\tDEPARTMENT
+                                                                                                            \t\tSALARY"<<endl;
+                                                                                                            file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                            while(!file.eof()){
+                                                                                                            if(emp_id==id){
+                                                                                                            cout<<id<<"
+                                                                                                                \t
+                                                                                                                "
+                                                                                                            <<first_name<<"\t\t"
+                                                                                                            <<last_name<<"\t\t"
+                                                                                                            <<p_number<<"
+                                                                                                                \t\t"
+                                                                                                            <<post<<"
+                                                                                                                \t\t"
+                                                                                                            <<department<<"\t\t\t
+                                                                                                                "
+                                                                                                            <<salary<<"
+                                                                                                                \n";
+                                                                                                                }
+                                                                                                                file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                                }
+                                                                                                                file.close();
+                                                                                                                }
+                                                                                                                void
+                                                                                                                employee_data::Update_record(){
+                                                                                                                system("cls");
+                                                                                                                int
+                                                                                                                emp_id,test_id,number,salarys,x=0;
+                                                                                                                string
+                                                                                                                fname,lname,departments,position,mname;
+                                                                                                                fstream
+                                                                                                                file,file2;
+                                                                                                                file.open("system.txt",ios::in);
+                                                                                                                file2.open("system2.txt",ios::app|ios::out);
+                                                                                                                if(!file||!file2){
+                                                                                                                getch();
+                                                                                                                start();
+                                                                                                                }
+                                                                                                                cout<<"enter
+                                                                                                                    the
+                                                                                                                    id"<<endl;
+                                                                                                                    cin>>test_id;
+                                                                                                                    file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                                    while(!file.eof()){
+                                                                                                                    if(test_id==id){
+                                                                                                                    cout<<"##########################
+                                                                                                                        ADD
+                                                                                                                        DETAIL
+                                                                                                                        ###################"<<endl;
+                                                                                                                        cout<<"\n
+                                                                                                                        \n
+                                                                                                                        \n
+                                                                                                                        \n";
+                                                                                                                        //cout<<"ID
+                                                                                                                        \t
+                                                                                                                        \t:";cin>>emp_id;
+                                                                                                                        cout<<"FIRST
+                                                                                                                            NAME
+                                                                                                                            \t
+                                                                                                                            \t:";cin>>fname;
+                                                                                                                            cout<<"MIDDLE
+                                                                                                                                NAME
+                                                                                                                                \t
+                                                                                                                                \t:";cin>>mname;
+                                                                                                                                cout<<"LAST
+                                                                                                                                    NAME
+                                                                                                                                    \t
+                                                                                                                                    \t
+                                                                                                                                    :";cin>>lname;
+                                                                                                                                    cout<<"PHONE
+                                                                                                                                        NUMBER\t\t:";cin>>number;
+                                                                                                                                        cout<<"POST
+                                                                                                                                            \t
+                                                                                                                                            \t
+                                                                                                                                            :";cin>>position;
+                                                                                                                                            cout<<"DEPARTMENT
+                                                                                                                                                \t
+                                                                                                                                                \t";cin>>departments;
+                                                                                                                                                cout<<"SALARY
+                                                                                                                                                    \t
+                                                                                                                                                    \t:";cin>>salarys;
+                                                                                                                                                    file2<<id<<"
+                                                                                                                                                        "<<fname<<"
+                                                                                                                                                        "<<mname<<"
+                                                                                                                                                        "<<lname<<"
+                                                                                                                                                        "<<number<<"
+                                                                                                                                                        "<<position<<"
+                                                                                                                                                        "<<departments<<"
+                                                                                                                                                        "<<salarys<<"\n";
+                                                                                                                                                        }
+                                                                                                                                                        else{
+                                                                                                                                                        file2<<id<<"
+                                                                                                                                                        "<<first_name<<"
+                                                                                                                                                        "<<middle_name<<"
+                                                                                                                                                        "<<last_name<<"
+                                                                                                                                                        "<<p_number<<"
+                                                                                                                                                        "<<post<<"
+                                                                                                                                                        "<<department<<"
+                                                                                                                                                        "<<salary<<"\n";
+                                                                                                                                                        }
+                                                                                                                                                        file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                                                                        }
+                                                                                                                                                        file.close();
+                                                                                                                                                        file2.close();
+                                                                                                                                                        remove("system.txt");
+                                                                                                                                                        rename("system2.txt","system.txt");
+                                                                                                                                                        start();
+                                                                                                                                                        }
+                                                                                                                                                        void
+                                                                                                                                                        employee_data::Delete_record(){
+                                                                                                                                                        system("cls");
+                                                                                                                                                        int
+                                                                                                                                                        test_id,x=0;
+                                                                                                                                                        fstream
+                                                                                                                                                        file,file2,file3;
+                                                                                                                                                        file.open("system.txt",ios::in);
+                                                                                                                                                        file2.open("system2.txt",ios::app|ios::out);
+                                                                                                                                                        file3.open("system3.txt",ios::app|ios::out);
+                                                                                                                                                        if(!file||!file2){
+                                                                                                                                                        getch();
+                                                                                                                                                        start();
+                                                                                                                                                        }
+                                                                                                                                                        cout<<"enter
+                                                                                                                                                            the
+                                                                                                                                                            id"<<endl;
+                                                                                                                                                            cin>>test_id;
+                                                                                                                                                            file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                                                                            while(!file.eof()){
+                                                                                                                                                            if(test_id==id){
+                                                                                                                                                            cout<<"##########################
+                                                                                                                                                                ADD
+                                                                                                                                                                DETAIL
+                                                                                                                                                                ###################"<<endl;
+                                                                                                                                                                file3<<id<<"
+                                                                                                                                                                "<<first_name<<"
+                                                                                                                                                                "<<middle_name<<"
+                                                                                                                                                                "<<last_name<<"
+                                                                                                                                                                "<<p_number<<"
+                                                                                                                                                                "<<post<<"
+                                                                                                                                                                "<<department<<"
+                                                                                                                                                                "<<salary<<"\n";
+                                                                                                                                                                cout<<"delete
+                                                                                                                                                                successfully";
+                                                                                                                                                                }
+                                                                                                                                                                else{
+                                                                                                                                                                file2<<id<<"
+                                                                                                                                                                "<<first_name<<"
+                                                                                                                                                                "<<middle_name<<"
+                                                                                                                                                                "<<last_name<<"
+                                                                                                                                                                "<<p_number<<"
+                                                                                                                                                                "<<post<<"
+                                                                                                                                                                "<<department<<"
+                                                                                                                                                                "<<salary<<"\n";
+                                                                                                                                                                }
+                                                                                                                                                                file>>id>>first_name>>middle_name>>last_name>>p_number>>post>>department>>salary;
+                                                                                                                                                                }
+                                                                                                                                                                file.close();
+                                                                                                                                                                file2.close();
+                                                                                                                                                                file3.close();
+                                                                                                                                                                remove("system.txt");
+                                                                                                                                                                rename("system2.txt","system.txt");
+                                                                                                                                                                start();
+                                                                                                                                                                }
